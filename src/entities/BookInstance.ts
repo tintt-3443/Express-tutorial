@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { Book } from './Book';
 import { Common } from './Common';
-import { StatusBookInstance } from 'src/constant/enum';
+import { StatusBookInstance } from '../constant/enum';
 
 @Entity()
 export class BookInstance extends Common {
