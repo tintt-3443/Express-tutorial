@@ -1,8 +1,8 @@
 import express from 'express';
 const userRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
-  res.send('user router1');
+userRouter.get('/', (_, res) => {
+  res.send('user router');
 });
 
 export default userRouter;
