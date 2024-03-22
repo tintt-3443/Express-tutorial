@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import router from './routes';
@@ -10,15 +10,6 @@ const port = process.env.PORT || 3000;
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use((err: Error, req: Request, res: Response) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  // render the error page
-  res.status(500); // err.status
-  res.render('error');
-});
 
 // Set view engine
 app.set('views', path.join(__dirname, 'views'));
