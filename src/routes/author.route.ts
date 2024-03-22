@@ -1,6 +1,7 @@
 import express from 'express';
-const router = express.Router();
 import * as authorController from '../controller/author.controller';
 
-router.get('/', authorController.createAuthor);
+const router = express.Router();
+
+router.get('/', authorController.authorList);
 export default router;

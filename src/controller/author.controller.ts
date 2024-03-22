@@ -5,17 +5,9 @@ import { Author } from '../entities/Author';
 
 const authorRepository = AppDataSource.getRepository(Author);
 
-export const getAuthor = asyncHandler(async (req: Request, res: Response) => {
-  res.send('NOT IMPLEMENTED: Author create GET');
+export const authorList = asyncHandler(async (req: Request, res: Response) => {
+  const authors = await authorRepository.find({
+    order: { family_name: 'ASC' },
+  });
+  res.render('authors/index', { authors });
 });
-
-export const createAuthor = asyncHandler(
-  async (req: Request, res: Response) => {
-    res.send('NOT IMPLEMENTED: Author create POST');
-  }
-);
-export const updateAuthor = asyncHandler(
-  async (req: Request, res: Response) => {
-    res.send('NOT IMPLEMENTED: Author update PATCH');
-  }
-);

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 #{t('home.list-book-instances')}
+  if bookInstances.length
+    ul
+      each bookInstance in bookInstances
+        li
+          a(href=bookInstance.url) #{bookInstance.title}
+          |  (#{bookInstance.author.name})
+  else
+    p #{t('home.book-instance-empty')}

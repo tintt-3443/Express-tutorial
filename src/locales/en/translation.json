@@ -1,0 +1,23 @@
+{
+  "home": {
+    "title": "Home",
+    "book": "Books",
+    "author": "Authors",
+    "genre": "Genres",
+    "book_instance": "Book Instances",
+    "create_author": "Create Author",
+    "create_genre": "Create Genre",
+    "create_book": "Create Book",
+    "create_book_instance": "Create Book Instance",
+    "english": "english",
+    "vietnamese": "vietnamese",
+    "list-books": "All books",
+    "book-empty": "No books found",
+    "list-authors": "All authors",
+    "author-empty": "No authors found",
+    "list-genres": "All genres",
+    "genre-empty": "No genres found",
+    "list-book-instances": "All book instances",
+    "book-instance-empty": "No book instances found"
+  }
+}
