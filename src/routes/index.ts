@@ -4,16 +4,16 @@ import booGenreRoute from './bookGenre.route';
 import bookInstanceRoute from './bookInstance.route';
 import bookRoute from './book.route';
 import genreRoute from './genre.route';
-import { Request, Response } from 'express';
+import { index } from '../controller/book.controller';
+// import { Request, Response } from 'express';
 const router: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  res.render('index');
-});
-router.use('/author', authorRoute);
-router.use('/book', bookRoute);
+router.get('/', index);
+
+router.use('/authors', authorRoute);
+router.use('/books', bookRoute);
 router.use('/bookGenre', booGenreRoute);
-router.use('/bookInstance', bookInstanceRoute);
-router.use('/genre', genreRoute);
+router.use('/book-instances', bookInstanceRoute);
+router.use('/genres', genreRoute);
 
 export default router;
