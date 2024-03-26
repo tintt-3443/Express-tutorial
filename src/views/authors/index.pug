@@ -2,11 +2,11 @@ extends ../layout
 
 block content
   h1 #{t('home.list-authors')}
+
   if authors.length
     ul
       each author in authors
         li
-          a(href=author.url) #{author.date_of_birth} | #{date_of_death}
-          |  (#{author.name()})
+          a(href=author.url()) #{author.name()} | #{author.date_of_birth} - #{author.date_of_death}
   else
     p #{t('home.author-empty')}

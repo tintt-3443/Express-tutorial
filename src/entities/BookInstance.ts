@@ -26,7 +26,7 @@ export class BookInstance extends Common {
   @ManyToOne(() => Book, (book: Book) => book.id)
   book: Book;
   // METHOD
-  get url(): string {
+  url(): string {
     return 'something';
   }
 }

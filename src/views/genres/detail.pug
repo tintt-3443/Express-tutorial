@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+    if genre
+        h1 Title: #{genre.name}
+
+        p #[strong #{t('home.books')}:] 
+
+
+        div(class='detail-item')
+            h4 #{t('home.book_instance')}:
+
+
+            each book in books
+                hr
+                p #[strong #{book.title}] 
+                p #{book.summary}
+
+            else
+                p #{t('home.no_book')}:
+    else
+        p #{t('home.no_genre')}:

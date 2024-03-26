@@ -8,11 +8,11 @@ export class Genre extends Common {
   name: string;
 
   // FOREIGN KEY
-  @OneToMany(() => BookGenre, (bookGenre: BookGenre) => bookGenre.id)
+  @OneToMany(() => BookGenre, (bookGenre: BookGenre) => bookGenre.genre)
   bookGenres: BookGenre[];
 
   // METHOD
-  get url(): string {
-    return 'something';
+  url(): string {
+    return `genres/${this.id}`;
   }
 }

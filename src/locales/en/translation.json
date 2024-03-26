@@ -18,6 +18,16 @@
     "list-genres": "All genres",
     "genre-empty": "No genres found",
     "list-book-instances": "All book instances",
-    "book-instance-empty": "No book instances found"
+    "book-instance-empty": "No book instances found",
+    "imprint": "Imprint",
+    "due-back": "Due back",
+    "ISBN": "ISBN",
+    "summary": "Summary",
+    "title-book": "Name",
+    "status-book": "Status",
+    "no_author": "Author not found",
+    "no_genre": "Genre not found",
+    "no_book": "Book not found",
+    "no_book_instance": "Book instance not found"
   }
 }

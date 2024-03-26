@@ -1,4 +1,4 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
 import { Book } from './Book';
 import { Common } from './Common';
 
@@ -17,14 +17,14 @@ export class Author extends Common {
   date_of_death: Date;
 
   // FOREIGN KEY
-  @OneToMany(() => Book, (book: Book) => book.id)
+  @OneToMany(() => Book, (book: Book) => book.author)
   books: Book[];
   // METHOD
-  get name(): string {
+  name(): string {
     return `${this.first_name} ${this.family_name}`;
   }
 
-  get url(): string {
-    return 'something';
+  url(): string {
+    return `/authors/${this.id}`;
   }
 }

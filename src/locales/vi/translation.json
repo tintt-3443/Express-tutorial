@@ -1,9 +1,12 @@
 {
   "home": {
     "title": "Trang chủ",
-    "book": "Tất cả Sách",
-    "author": "Tất cả Tác giả",
-    "genre": "Tất cả Thể loại",
+    "books": "Tất cả Sách",
+    "book": "Sách",
+    "authors": "Tất cả tác giả",
+    "author": "Tác giả",
+    "genres": "Tất cả thể loại",
+    "genre": "Thể loại",
     "book_instance": "Tất cả Các bản sao sách",
     "create_author": "Tạo Tác giả mới",
     "create_genre": "Tạo Thể loại mới",
@@ -18,6 +21,16 @@
     "list-genres": "Danh sách các thể loại sách có trong thư viện",
     "genre-empty": "Không có thể loại nào được tìm thấy",
     "list-book-instances": "Danh sách các bản sao sách có trong thư viện",
-    "book-instance-empty": "Không có bản sao sách nào được tìm thấy"
+    "book-instance-empty": "Không có bản sao sách nào được tìm thấy",
+    "imprint": "Ấn phẩm",
+    "due-back": "Ngày hoàn trả",
+    "ISBN": "Mã số sách quốc tế",
+    "summary": "Tóm tắt",
+    "title-book": "Tên sách",
+    "status-book": "Trạng thái",
+    "no-author": "Không tìm thấy tác giả",
+    "no-genre": "Không tìm thấy thể loại",
+    "no-book": "Không tìm thấy sách",
+    "no-book-instance": "Không tìm thấy bản sao sách"
   }
 }
