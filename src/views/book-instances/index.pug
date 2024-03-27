@@ -4,9 +4,21 @@ block content
   h1 #{t('home.list-book-instances')}
   if bookInstances.length
     ul
-      each bookInstance in bookInstances
+      each bookI in bookInstances
         li
-          a(href=bookInstance.url) #{bookInstance.title}
-          |  (#{bookInstance.author.name})
-  else
-    p #{t('home.book-instance-empty')}
+          a(href=`/book-instances/${bookI.id}`) #{bookI.book.title} : #{bookI.imprint} -&nbsp;
+          if bookI.status=== bookingStatus.AVAILABLE
+            span.text-success #{bookI.status}
+          else if bookI.status=== bookingStatus.REJECTED
+            span.text-danger #{bookI.status}
+          else if bookI.status=== bookingStatus.PENDING
+            span.text-warning #{bookI.status}
+          else if bookI.status== bookingStatus.LOAN
+            span.text-infor #{bookI.status}
+          else
+            span #{bookI.status}
+          if bookI.status!='Available'
+            span  (Due: #{bookI.due_back} )
+
+      else
+        p #{t('home.book-instance-empty')}

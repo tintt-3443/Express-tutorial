@@ -1,5 +1,7 @@
 import express from 'express';
 import path from 'path';
+import flash from 'connect-flash';
+import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import router from './routes';
 import logger from 'morgan';
@@ -45,7 +47,17 @@ app.set('view engine', 'pug');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(cookieParser());
+app.use(cookieParser('secretString'));
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'locallibrary',
+    cookie: { maxAge: 60000 },
+  })
+);
+app.use(flash());
 
 app.use(logger('dev'));
 

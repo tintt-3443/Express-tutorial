@@ -35,11 +35,11 @@ export class Book extends Common {
 
   @OneToMany(
     () => BookInstance,
-    (bookInstance: BookInstance) => bookInstance.id
+    (bookInstance: BookInstance) => bookInstance.book
   )
   bookInstances: BookInstance[];
   // METHOD
-  get url(): string {
-    return 'something';
+  url(): string {
+    return `/books/${this.id}`;
   }
 }

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    if bookinstance
+        h1 ID: #{bookinstance.id}
+
+        p #[strong #{t('home.title-book')}: ]
+            a(href=`/books/${bookinstance.book.id}`) #{bookinstance.book.title}
+        p #[strong #{t('home.imprint')}:] #{bookinstance.imprint}
+
+        p #[strong #{t('home.status-book')}: ]
+            if bookinstance.status=== bookingStatus.AVAILABLE
+                span.text-success #{bookinstance.status}
+            else if bookinstance.status=== bookingStatus.REJECTED 
+                span.text-danger #{bookinstance.status}
+            else if bookinstance.status=== bookingStatus.PENDING 
+                span.text-warning #{bookinstance.status}
+            else if bookinstance.status=== bookingStatus.LOAN
+                span.text-infor #{bookinstance.status}
+            else
+                span #{bookinstance.status}
+
+        if bookinstance.status!='Available'
+            p #[strong #{t('home.due-back')}:] #{bookinstance.due_back}
+    else 
+        p #[strong #{t('home.no-book-instance')}]

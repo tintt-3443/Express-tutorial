@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    if author
+        h1 #{t('home.author')}: #{author.name()}
+        p (#[strong #{author.date_of_birth}] - #[strong #{author.date_of_death}])
+
+        div(class='detail-item')
+            if books.length > 0
+                each book in books
+                    hr
+                    p #[strong #{book.title}] 
+                    p #{book.summary}
+            else
+                p #{t('home.no_book')}
+    else
+        p #{t('home.no_author')}

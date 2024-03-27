@@ -39,10 +39,51 @@ export const index = asyncHandler(async (req: Request, res: Response) => {
   });
 });
 
-export const bookList = asyncHandler(async (req: Request, res: Response) => {
-  const books = await bookRepository.find({
-    order: { title: 'ASC' },
-    relations: ['author'],
-  });
-  res.render('books/index', { books });
-});
+export const bookList = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const books = await bookRepository.find({
+        order: { title: 'ASC' },
+        relations: ['author'],
+      });
+      res.render('books/index', { books });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+export const bookDetail = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        req.flash('error', req.t('home.no-book'));
+        res.redirect('/books');
+      }
+      const book = await bookRepository.findOne({
+        relations: [
+          'author',
+          'bookGenres',
+          'bookGenres.genre',
+          'bookInstances',
+        ],
+        where: { id: id },
+      });
+      if (book === null) {
+        req.flash('error', req.t('home.no-book'));
+        res.redirect('/books');
+      }
+      const genre_ = Array.isArray(book?.bookGenres)
+        ? book.bookGenres.map((bookGenre) => bookGenre.genre)
+        : [];
+      res.render('books/detail', {
+        book,
+        book_instances: book?.bookInstances,
+        genres: genre_,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);

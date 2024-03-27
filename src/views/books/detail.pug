@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+    if book
+        h1 Title: #{book.title}
+
+        p #[strong #{t('home.author')} ]
+            a(href=book.author.url) #{book.author.name()}
+        p #[strong #{t('home.summary')}:] #{book.summary}
+        p #[strong #{t('home.ISBN')}:] #{book.isbn}
+        p #[strong #{t('home.genre')}: ]
+            each gen, index in genres
+                a(href=gen.url) #{gen.name}
+                if index < genre.length - 1
+                    |,&nbsp;
+
+        div(class='detail-item')
+            h4 #{t('home.book_instance')}:
+
+            each bookI in book_instances
+                hr
+                if bookI.status=='available'
+                    p.text-success #{bookI.status}
+                else if bookI.status=='rejected'
+                    p.text-danger #{bookI.status}
+                else if bookI.status=='pending'
+                    p.text-warning #{bookI.status}
+                else if bookI.status=='loan'
+                    p.text-info #{bookI.status}
+                else
+                    p #{bookI.status}
+                p #[strong #{t('home.imprint')}:] #{bookI.imprint}
+                if bookI.status!='Available'
+                    p #[strong #{t('home.due-back')}:] #{bookI.due_back}
+                p #[strong Id: ]
+                    a(href=`/bookinstances/${bookI.instanceId}`) #{bookI.id}
+
+            else
+                p #{t('home.no_book')}:
+    else
+        p #{t('home.no_book')}
