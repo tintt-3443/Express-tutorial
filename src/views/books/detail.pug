@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     if book
-        h1 Title: #{book.title}
+        h1 #[strong #{t('home.title-book')} ]: #{book.title}
 
         p #[strong #{t('home.author')} ]
             a(href=book.author.url) #{book.author.name()}
@@ -11,7 +11,7 @@ block content
         p #[strong #{t('home.genre')}: ]
             each gen, index in genres
                 a(href=gen.url) #{gen.name}
-                if index < genre.length - 1
+                if index < genres.length - 1
                     |,&nbsp;
 
         div(class='detail-item')
@@ -36,6 +36,11 @@ block content
                     a(href=`/bookinstances/${bookI.instanceId}`) #{bookI.id}
 
             else
-                p #{t('home.no_book')}:
+                p #{t('home.no-book-instance')}:
     else
-        p #{t('home.no_book')}
+        p #{t('home.no-book')}
+    hr
+    p
+        a(href=`/books/delete/${book.id}`) #{t('form.book-delete')}
+    p
+        a(href=`/books/update/${book.id}`) #{t('form.book-update')}

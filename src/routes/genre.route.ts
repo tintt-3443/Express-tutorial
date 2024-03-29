@@ -1,6 +1,11 @@
 import express from 'express';
 import * as genreController from '../controller/genre.controller';
 const router = express.Router();
-router.get('/', genreController.genreList);
+router.get('/delete/:id', genreController.genreDeleteGet);
+router.post('/update/:id', genreController.postGenreUpdateForm);
+router.get('/update/:id', genreController.genreUpdateGet);
+router.get('/new', genreController.genreCreateGet);
+router.post('/add', genreController.postGenreCreateForm);
 router.get('/:id', genreController.genreDetail);
+router.get('/', genreController.genreList);
 export default router;

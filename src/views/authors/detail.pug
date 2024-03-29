@@ -12,6 +12,11 @@ block content
                     p #[strong #{book.title}] 
                     p #{book.summary}
             else
-                p #{t('home.no_book')}
+                p #{t('home.no-author')}
     else
-        p #{t('home.no_author')}
+        p #{t('home.no-author')}
+    hr
+    p
+        a(href=`/authors/delete/${author.id}`) #{t('form.author-delete')}
+    p
+        a(href=`/authors/update/${author.id}`) #{t('form.author-update')}

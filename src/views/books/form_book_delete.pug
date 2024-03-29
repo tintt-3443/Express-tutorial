@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+
+    h1 #{t('home.title-book')}: #{book.title}
+    p  
+        p #[strong #{t('home.author')}: ]  
+        a(href=author.url()) #{author.name()}
+    p #[strong #{t('home.summary')}:  ] #{book.summary}
+    p #[strong #{t('home.ISBN')}:  ] #{book.isbn}
+    if bookInstances.length
+
+        p #[strong #{t('form.book-title')}]
+        div(style='margin-left:20px;margin-top:20px')
+            h4 #{t('home.book')}
+            dl
+                each bookI in bookInstances
+                    hr
+                    if bookI.status==statusBookInstance.AVAILABLE
+                        p.text-success #{bookI.status}
+                        p #[strong Id:]
+                        a(href=bookI.url()) #{bookI.id}
+                    else if bookI.status==statusBookInstance.LOANED
+                        p.text-danger #{bookI.status}
+                    else
+                        p.text-warning #{bookI.status}
+                        p #[strong #{t('home.imprint')}:] #{bookI.imprint}
+                    if bookI.status!=statusBookInstance.AVAILABLE
+                        p #[strong #{t('home.dueBack')}:] #{bookI.due_back}
+                        p #[strong Id:]
+                        a(href=bookI.url()) #{bookI.id}
+
+    else
+        p #{t('form.book-confirm')}
+
+        form(method='POST' action = `/books/remove/${book.id}`)
+            div.form-group
+                input#bookid.form-control(type='hidden' name='id', value=book.id )
+
+            button.btn.btn-primary(type='submit') #{t('form.delete')}

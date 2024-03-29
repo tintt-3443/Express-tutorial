@@ -1,7 +1,12 @@
 import express from 'express';
 import * as bookInstanceController from '../controller/bookInstance.controller';
 const router = express.Router();
-
+router.post('/remove/:id', bookInstanceController.bookInstancesDeletePost);
+router.get('/delete/:id', bookInstanceController.bookInstanceDeleteGet);
+router.post('/update/:id', bookInstanceController.bookInstanceUpdatePost);
+router.get('/update/:id', bookInstanceController.bookInstanceUpdateGet);
+router.post('/add', bookInstanceController.postBookInstanceCreateForm);
+router.get('/create', bookInstanceController.bookInstanceCreateGet);
 router.get('/', bookInstanceController.bookIStanceList);
 router.get('/:id', bookInstanceController.bookIstanceDetail);
 export default router;

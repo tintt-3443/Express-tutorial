@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+
+    h1 #[strong #{t('home.book-instance')}]
+
+    p #[strong #{t('form.bookinstance_confirm')}]
+
+    div(style="margin-left:20px")
+
+        p #[strong ID]: #{bookInstance.id}
+
+        p #[strong #{t('home.title-book')}: ]
+            a(href=bookInstance.book.url()) #{bookInstance.book.title}
+
+        p #[strong #{t('home.imprint')}:] #{bookInstance.imprint}
+
+        p #[strong #{t('form.status')}: ]
+            if bookInstance.status==bookIStatus.AVAILABLE
+                span.text-success #{bookInstance.status}
+            else if bookInstance.status==bookIStatus.LOAN
+                span.text-danger #{bookInstance.status}
+            else
+                span.text-warning #{bookInstance.status}
+
+        if bookInstance.status!='Available'
+            p #[strong  #{t('form.dueback')}:] #{bookInstance.dueBack}
+
+    form(method='POST' action = `/book-instances/remove/${bookInstance.id}`)
+        div.form-group
+            input#id.form-control(type='hidden' name='id', value=bookInstance.id )
+
+        button.btn.btn-primary(type='submit') #{t('form.delete')}
