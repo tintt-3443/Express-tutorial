@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    h1 #{t('form.author-update')}
+
+    form(method='POST', action = (author ? `/authors/update/${author.id}` : '/authors/add'))
+        div.form-group
+            label(for='fname') #{t('home.fname')}:
+            input#fname.form-control(type='text' placeholder='First name' name='fname' required value=(undefined===author ? '' : author.first_name) )
+        div.form-group
+        div.form-group
+            label(for='famname') #{t('home.famname')}:
+            input#famname.form-control(type='text' placeholder='Last name' name='famname' required value=(undefined===author ? '' : author.family_name) )
+        div.form-group
+        div.form-group
+            label(for='dob') #{t('home.dob')}:
+            input#dob.form-control(type='date' placeholder='ISBN13' name='dob' value=(undefined===author ? '' : author.date_of_birth ) required)
+        div.form-group
+            label(for='dod') #{t('home.dod')}:
+            input#dod.form-control(type='date' placeholder='ISBN13' name='dod' value=(undefined===author ? '' : author.date_of_death ) required)
+
+        button.btn.btn-primary(type='submit') #{t('home.update-sm')}
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg

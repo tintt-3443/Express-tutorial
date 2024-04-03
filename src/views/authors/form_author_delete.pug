@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+    h1 #{t('home.author')}: #{author.name()}
+    p= author.lifespan
+
+    if authorBooks.length
+
+        p #[strong #{t('form.author-title')}]
+        div(style='margin-left:20px;margin-top:20px')
+            h4 #{t('home.book')}
+            dl
+                each book in authorBooks
+                    dt
+                        a(href= `/books/${book.bookId}`) #{book.title}
+                    dd #{book.summary}
+
+    else
+        p #{t('form.author-confirm')}
+
+        form(method='POST' action = `/authors/remove/${author.id}`)
+            div.form-group
+                input#authorid.form-control(type='hidden' name='id', value=author.id )
+
+            button.btn.btn-primary(type='submit') #{t('form.delete')}

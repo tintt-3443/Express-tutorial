@@ -27,6 +27,6 @@ export class BookInstance extends Common {
   book: Book;
   // METHOD
   url(): string {
-    return 'something';
+    return `/book-instances/${this.id}`;
   }
 }

@@ -17,6 +17,11 @@ block content
                 p #{book.summary}
 
             else
-                p #{t('home.no_book')}:
+                p #{t('home.no-genre')}:
     else
-        p #{t('home.no_genre')}:
+        p #{t('home.no-genre')}:
+    hr
+    p
+        a(href=`/genres/delete/${genre.id}`) #{t('form.genre-delete')}
+    p
+        a(href=`/genres/update/${genre.id}`) #{t('form.genre-update')}

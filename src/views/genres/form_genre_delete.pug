@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+    h1 #{t('form.genre-delete')}: #{genre.name}
+
+    if books.length
+
+        p #[strong #{t('form.genre-title')}:]
+
+        div(style='margin-left:20px;margin-top:20px')
+
+            h4 #{t('home.book')}
+
+            dl
+                each book in books
+                    dt
+                        a(href=`/books/${book.id}`) #{book.title}
+                    dd #{book.summary}
+
+    else
+        p #{t('form.genre-confirm')}:
+
+        form(method='POST' action = `/genres/remove/${genre.id}`)
+            div.form-group
+                input#id.form-control(type='hidden' name='id', value=genre.id )
+
+            button.btn.btn-primary(type='submit') #{t('form.remove')}

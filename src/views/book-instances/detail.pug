@@ -24,3 +24,8 @@ block content
             p #[strong #{t('home.due-back')}:] #{bookinstance.due_back}
     else 
         p #[strong #{t('home.no-book-instance')}]
+    hr
+    p
+        a(href=`/book-instances/delete/${bookinstance.id}`) #{t('form.book-instance-delete')}
+    p
+        a(href=`/book-instances/update/${bookinstance.id}`) #{t('form.book-instance-update')}

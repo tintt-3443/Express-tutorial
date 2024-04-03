@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+    h1 #{t('home.book-instance')}
+
+    form(method='POST', action = (bookInstance ? `/book-instances/update/${bookInstance.id}` : '/book-instances/add'))
+        div.form-group
+            label(for='imprint') #{t('home.imprint')}:
+            input#imprint.form-control(type='text' placeholder='Imprint' name='imprint' required value=(undefined===bookInstance ? '' : bookInstance.imprint) )
+        div.form-group
+        div.form-group
+            label(for='book') #{t('home.book')}:
+            select#book.form-control(name='book' required)
+                option(value='' disabled selected) #{t('form.book-select')}
+                for book in books
+                    if bookInstance
+                        if book.id.toString()===bookInstance.book.id.toString()
+                            option(value=book.id selected) #{book.title}
+                        else
+                            option(value=book.id) #{book.title}
+                    else
+                        option(value=book.id) #{book.title}
+        div.form-group
+            label(for='dueback') #{t('form.dueback')}:
+            input#dueback.form-control(type='date' placeholder='Due back' name='dueback' required value=(undefined===bookInstance ? '' : bookInstance.due_back) )
+        div.form-group
+            label(for='status') #{t('form.status')}:
+            select#status.form-control(name='status' required)
+                option(value='' disabled selected) #{t('form.status-select')}
+                for item in bookIStatus
+                    if bookInstance 
+                        if item[1]===bookInstance.status
+                            option(value=item[1] selected) #{item[0]}
+                        else
+                            option(value=item[1]) #{item[0]}
+                    else
+                        option(value=item[1]) #{item[0]}
+
+
+        button.btn.btn-primary(type='submit') #{t('home.submit')}
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
